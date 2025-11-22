@@ -9,6 +9,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -31,6 +32,11 @@ body {
   align-items: center;
 }
 
+.header-title {
+  font-size: 25px;
+  background-color: var(--color-secondary);
+}
+
 .breakline {
   border: 1px solid var(--foreground);
 }
@@ -46,10 +52,17 @@ body {
   background-color: var(--secondary);
 }
 
-.header a:active {
-  background-color: var(--background);
+.header button {
+  color: var(--foreground);
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
 }
 
+.header button:hover {
+  cursor: pointer;
+  background-color: var(--secondary);
+}
 .panel-container {
   width:100%;
   display: flex;
@@ -89,7 +102,7 @@ body {
   margin-top: 1rem;
   border: 1px solid var(--secondary);
   width: 5rem;
-  align-self: center;
+  align-self: left;
 }
 
 .panel button:hover {
