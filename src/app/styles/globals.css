@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #ededed;
+  --background: #181818;
+  --secondary: #5555ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+    transition-duration: 0.2s;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  border-bottom: 1px solid var(--foreground);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.breakline {
+  border: 1px solid var(--foreground);
+}
+
+.header a {
+  color: var(--foreground);
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.header a:hover {
+  background-color: var(--secondary);
+}
+
+.header a:active {
+  background-color: var(--background);
+}
+
+.panel-container {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.panel {
+  margin-top: 5rem;
+  border: 1px solid var(--foreground);
+  width: 50%;
+  padding: 1rem;
+}
+
+.panel form {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel label {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.panel input {
+  margin-left: 1rem;
+  border-bottom: 1px solid var(--foreground);
+  outline: none;
+}
+
+.panel input:focus-visible {
+  border-bottom: 1px solid var(--secondary);
+}
+
+.panel button {
+  margin-top: 1rem;
+  border: 1px solid var(--secondary);
+  width: 5rem;
+  align-self: center;
+}
+
+.panel button:hover {
+  background-color: var(--secondary);
+  color: var(--foreground);
+  cursor: pointer;
+}
