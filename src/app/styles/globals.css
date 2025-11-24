@@ -39,6 +39,7 @@ body {
 
 .breakline {
   border: 1px solid var(--foreground);
+  width: 100%;
 }
 
 .header a {
@@ -108,5 +109,87 @@ body {
 .panel button:hover {
   background-color: var(--secondary);
   color: var(--foreground);
+  cursor: pointer;
+}
+
+.forPage-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.forPage-left {
+  border-right: 1px solid var(--color-foreground)
+}
+
+.forPage-right {
+  border-left: 1px solid var(--color-foreground)
+}
+
+.postInLine-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-foreground);
+}
+
+.postInLine-container p {
+  margin-bottom: 1rem;
+}
+
+.postInLine-container button {
+  padding-inline: 1rem;
+  border: 1px solid var(--color-secondary);
+  margin: 1rem;
+}
+
+.postInLine-container button:hover {
+  background-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.like-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.right-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.postBar form{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.postBar {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-foreground);
+}
+
+.postBar textarea {
+  border-bottom: 1px solid var(--color-foreground);
+  outline: none;
+  width: 50%;
+  min-height: 2rem;
+  max-height: 7rem;
+}
+
+.postBar textarea:focus-visible {
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.postBar button {
+  border: 1px solid var(--color-secondary);
+  padding-inline: 1rem;
+}
+
+.postBar button:hover {
+  background-color: var(--color-secondary);
   cursor: pointer;
 }

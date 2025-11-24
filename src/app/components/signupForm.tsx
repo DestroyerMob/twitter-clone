@@ -11,58 +11,55 @@ export default function SignupForm() {
     const [error, setError] = useState<string | null>(null);
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+        e.preventDefault();
 
-    setStatus("submitting");
-    setError(null);
+        setStatus("submitting");
+        setError(null);
 
-    const formData = new FormData(e.currentTarget);
+        const formData = new FormData(e.currentTarget);
 
-    const firstName = (formData.get("firstName") ?? "") as string;
-    const lastName  = (formData.get("lastName")  ?? "") as string;
-    const email     = (formData.get("email")     ?? "") as string;
-    const password  = (formData.get("password")  ?? "") as string;
+        const firstName = (formData.get("firstName") ?? "") as string;
+        const lastName  = (formData.get("lastName")  ?? "") as string;
+        const email     = (formData.get("email")     ?? "") as string;
+        const password  = (formData.get("password")  ?? "") as string;
 
-    try {
-        // 1️⃣ Signup
-        const signupRes = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-        });
+        try {
+            const signupRes = await fetch("/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ firstName, lastName, email, password }),
+            });
 
-        const signupData = await signupRes.json();
+            const signupData = await signupRes.json();
 
-        if (!signupRes.ok) {
-        setError(signupData.error || "Signup failed.");
-        setStatus("error");
-        return;
+            if (!signupRes.ok) {
+                setError(signupData.error || "Signup failed.");
+                setStatus("error");
+                return;
+            }
+
+            const loginRes = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const loginData = await loginRes.json();
+
+            if (!loginRes.ok || !loginData.success) {
+                setError(loginData.error || "Login failed.");
+                setStatus("error");
+                return;
+            }
+
+            console.log("Logged in:", loginData.user);
+            setStatus("success");
+            router.push("/"); // or router.replace("/")
+        } catch (err) {
+            console.error(err);
+            setError("Something went wrong.");
+            setStatus("error");
         }
-
-        // 2️⃣ Auto-login
-        const loginRes = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-        });
-
-        const loginData = await loginRes.json();
-
-        if (!loginRes.ok || !loginData.success) {
-        setError(loginData.error || "Login failed.");
-        setStatus("error");
-        return;
-        }
-
-        // 3️⃣ Success → redirect home
-        console.log("Logged in:", loginData.user);
-        setStatus("success");
-        router.push("/"); // or router.replace("/")
-    } catch (err) {
-        console.error(err);
-        setError("Something went wrong.");
-        setStatus("error");
-    }
     }
 
 

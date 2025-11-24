@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,9 +21,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ messageContent }, { status: 201 });
+    const post = await prisma.post.create({
+      data: {
+        messageContent,
+        authorId,
+      },
+      select: {
+        id: true,
+        messageContent: true,
+        authorId:true,
+      },
+    });
+
+    return NextResponse.json({ post }, { status: 201 });
   } catch (err) {
-    console.error("Signup error:", err);
+    console.error("Post error:", err);
     return NextResponse.json(
       { error: "Something went wrong." },
       { status: 500 }
