@@ -20,6 +20,7 @@ export default function SignupForm() {
 
         const firstName = (formData.get("firstName") ?? "") as string;
         const lastName  = (formData.get("lastName")  ?? "") as string;
+        const displayName = (formData.get("displayName") ?? "") as string;
         const email     = (formData.get("email")     ?? "") as string;
         const password  = (formData.get("password")  ?? "") as string;
 
@@ -27,7 +28,7 @@ export default function SignupForm() {
             const signupRes = await fetch("/api/auth/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ firstName, lastName, email, password }),
+                body: JSON.stringify({ firstName, lastName, displayName, email, password }),
             });
 
             const signupData = await signupRes.json();
@@ -75,6 +76,10 @@ export default function SignupForm() {
                     </label>
                     <label>
                         Last Name:
+                        <input type="text" name="lastName"></input>
+                    </label>
+                    <label>
+                        Display Name:
                         <input type="text" name="lastName"></input>
                     </label>
                     <label>
