@@ -9,17 +9,19 @@ export async function POST(req: NextRequest) {
     const {
       firstName,
       lastName,
+      displayName,
       email,
       password,
     } = body as {
       firstName?: string;
       lastName?: string;
+      displayName?: string;
       email?: string;
       password?: string;
     };
 
     // Basic validation
-    if (!firstName || !lastName || !email || !password) {
+    if (!firstName || !lastName || !displayName || !email || !password) {
       return NextResponse.json(
         { error: "All fields are required." },
         { status: 400 }
@@ -53,6 +55,7 @@ export async function POST(req: NextRequest) {
       data: {
         firstName,
         lastName,
+        displayName,
         email,
         passwordHash,
       },
@@ -60,6 +63,7 @@ export async function POST(req: NextRequest) {
         id: true,
         firstName: true,
         lastName: true,
+        displayName: true,
         email: true,
         createdAt: true,
       },

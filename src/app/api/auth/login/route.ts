@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
+      displayName: user.displayName,
       email: user.email,
       createdAt: user.createdAt,
     };

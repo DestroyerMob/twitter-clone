@@ -30,6 +30,7 @@ export async function GET() {
         id: true,
         firstName: true,
         lastName: true,
+        displayName: true,
         email: true,
         createdAt: true,
       },

@@ -80,7 +80,7 @@ export default function SignupForm() {
                     </label>
                     <label>
                         Display Name:
-                        <input type="text" name="lastName"></input>
+                        <input type="text" name="displayName"></input>
                     </label>
                     <label>
                         Email:
